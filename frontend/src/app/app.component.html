@@ -1,0 +1,14 @@
+<mat-toolbar *ngIf="isLoggedIn">
+  <button mat-button [matMenuTriggerFor]="soldierMenu">Soldier</button>
+  <mat-menu #soldierMenu="matMenu">
+    <button mat-menu-item routerLink="soldier-list">List Soldiers</button>
+    <button mat-menu-item routerLink="soldier-form">Create Soldier</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="armOfServiceMenu">Arm Of Service</button>
+  <mat-menu #armOfServiceMenu="matMenu">
+    <button mat-menu-item routerLink="arm_of_service-list">List Arms Of Service</button>
+    <button mat-menu-item routerLink="arm_of_service-form">Create Arm of Service</button>
+  </mat-menu>
+  <app-logout></app-logout>
+</mat-toolbar>
+<router-outlet></router-outlet>

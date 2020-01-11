@@ -1,0 +1,42 @@
+<form [formGroup]="armOfServiceFormGroup" class="aos-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="name" required>
+    <mat-hint align="end">The name of the arm of service</mat-hint>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.name.hasError('armAlreadyExists')">Name already exists</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Short-Name" formControlName="short_name" required>
+    <mat-hint align="end">The short name of the arm of service</mat-hint>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.short_name.hasError('required')">Short-Name is required</mat-error>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.short_name.hasError('armAlreadyExists')">Short-Name already exists</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Founding Year" formControlName="founding_year" required>
+    <mat-hint align="end">The founding year of the arm of service</mat-hint>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.short_name.hasError('required')">Short-Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="annotation" formControlName="annotation" required></textarea>
+    <mat-hint align="end">Important annotations</mat-hint>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.annotation.hasError('required')">Annotation is required</mat-error>
+    <mat-error *ngIf="armOfServiceFormGroup.controls.annotation.hasError('badWord')">Annotation contains "bad word"</mat-error>
+  </mat-form-field>
+  <mat-checkbox formControlName="in_action">Currently in action</mat-checkbox>
+  <mat-form-field>
+    <mat-select placeholder="Country" formControlName="country">
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="countryOption.id"
+                  *ngFor="let countryOption of countryOptions">{{countryOption.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The country of the arm of service</mat-hint>
+  </mat-form-field>
+  <br/>
+
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!armOfServiceFormGroup.valid" (click)="createArmOfService()">
+      <span *ngIf="!armOfServiceFormGroup.controls.id.value">Create</span>
+      <span *ngIf="armOfServiceFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

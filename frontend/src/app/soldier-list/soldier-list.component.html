@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="soldiers">
+
+  <ng-container matColumnDef="rank">
+    <th mat-header-cell *matHeaderCellDef>Rank</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.rank}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="first_name">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.first_name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="last_name">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.last_name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="year_of_birth">
+    <th mat-header-cell *matHeaderCellDef>Year of Birth</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.year_of_birth | date}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="height">
+    <th mat-header-cell *matHeaderCellDef>Height</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.height}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="arm_of_service">
+    <th mat-header-cell *matHeaderCellDef>Arm of Service</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.arm_of_service}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="country">
+    <th mat-header-cell *matHeaderCellDef>Country</th>
+    <td mat-cell *matCellDef="let soldier">{{soldier.country}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let soldier">
+      <button mat-button [routerLink]="'/soldier-form/' + soldier.id">Edit</button>
+      <button mat-button (click)="deleteSoldier(soldier)" *ngIf="userService.hasPermission('yamod.delete_soldier')">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
